@@ -5,15 +5,16 @@ class Player
 {
     //variables
     public:
-        float scale = .5;
+        const float scale = .5; //metres
         sf::Vector2f position;
         float velocity;
-        float mass;
+        float mass = .5f; //kgs
 
     private:
         sf::CircleShape shape;
-        float gravity = 10;
-        float pixcelScale = 50 * scale;
+        float gravity = .00011; //Newton/kg
+        const float pixcelScale = 50 * scale;
+        float acceleration;
 
     //methods
     public:
@@ -23,5 +24,16 @@ class Player
         sf::CircleShape getShape();
         //updator for player
         void update();
+        //jumping
+        void jump();
+        
+        //checks
+        bool isEdged();
+
+    private:
+        void accelerate();
+        void move();
+        void addForce(float force);
+
 
 };
