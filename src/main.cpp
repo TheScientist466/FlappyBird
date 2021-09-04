@@ -1,10 +1,15 @@
 #include <SFML/Graphics.hpp>
+#include <string>
 #include <iostream>
+
+using namespace std;
 
 const uint windowWidth = 960;
 const uint windowHeight = 540;
 
-sf::RenderWindow window (sf::VideoMode(windowWidth, windowHeight), "Window", sf::Style::Close);
+const string windowName = "FlappyBird";
+
+sf::RenderWindow window (sf::VideoMode(windowWidth, windowHeight), windowName, sf::Style::Close);
 
 int main() {
     

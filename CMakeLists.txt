@@ -9,11 +9,11 @@ find_package(SFML 2.5.1 COMPONENTS audio graphics window system REQUIRED)
 
 FILE(
   GLOB
-  SOURCES
-  "main.cpp"
+  files
+  "src/*.cpp"
 )
 
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} ${files})
 
 target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-audio)
 
