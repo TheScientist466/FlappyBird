@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Player::Player(float _mass, sf::Vector2f _position, float _velocity)
+Player::Player(float _mass, sf::Vector2f _position, float _velocity, float* dT)
 {
     mass = _mass;
     position = _position;
@@ -11,6 +11,7 @@ Player::Player(float _mass, sf::Vector2f _position, float _velocity)
     shape.setOrigin(sf::Vector2f(pixcelScale, pixcelScale));
     shape.setRadius(pixcelScale);
     shape.setPosition(_position);
+    deltaTime = dT;
 }
 
 sf::CircleShape Player::getShape()
@@ -27,22 +28,22 @@ void Player::update()
 
 void Player::accelerate()
 {
-    velocity += acceleration;
+    velocity += acceleration * *deltaTime;
 }
 
 void Player::move()
 {
-    position.y += velocity;
+    position.y += velocity * *deltaTime;
     //cout << position.y << endl;
 }
 
 void Player::addForce(float force)
 {
-    acceleration = force/mass;
+    acceleration = (force/mass);
     accelerate();
 }
 
 void Player::jump()
 {
-    addForce(-0.3);
+    addForce(jumpForce);
 }
