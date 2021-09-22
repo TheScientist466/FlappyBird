@@ -12,11 +12,13 @@ class Player
 
     private:
         sf::CircleShape shape;
-        float gravity = 500; //Newton/kg
-        float jumpForce = -25000.f;
+        float gravity = .5; //Newton/kg
+        float jumpForce = -12;
         const float pixcelScale = 50 * scale;
         float acceleration;
         float* deltaTime;
+        bool temp = false;
+        bool isGrounded = false;
 
     //methods
     public:

@@ -21,20 +21,26 @@ sf::CircleShape Player::getShape()
 
 void Player::update()
 {
-    addForce(gravity);
+    cout << *deltaTime << endl;
+    if (temp)
+        addForce(gravity);
     move();
     shape.setPosition(position);
 }
 
 void Player::accelerate()
 {
-    velocity += acceleration * *deltaTime;
+    if(!isGrounded)
+        velocity += acceleration;
 }
 
 void Player::move()
 {
-    position.y += velocity * *deltaTime;
-    //cout << position.y << endl;
+    position.y = clamp(position.y + velocity, 0.f, 540.f);
+    if(position.y == 540)
+        isGrounded = true;
+    else if(position.y == 540)
+        acceleration = 0;
 }
 
 void Player::addForce(float force)
@@ -45,5 +51,7 @@ void Player::addForce(float force)
 
 void Player::jump()
 {
+    temp = true;
+    isGrounded = false;
     addForce(jumpForce);
 }
